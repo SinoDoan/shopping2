@@ -59,7 +59,7 @@
             </table>
           </div>
           <div class="col-md-12">
-             {{ $products->links() }}
+             {{ $products->appends($_GET)->links() }}
           </div>
 
         </div>
