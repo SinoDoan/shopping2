@@ -45,6 +45,7 @@ class User extends Authenticatable
         //lay dc tat ca quyen cua user trong he thong
         //so sanh gia tri dua vao cua route hien tai xem co ton tai trong cac quyen tren he thong khong
         $roles = auth()->user()->roles;
+        //dd($roles);
         foreach ($roles as $role ){
             $permissions = $role->permissions;
             if($permissions->contains('key_code', $permissionCheck)){
