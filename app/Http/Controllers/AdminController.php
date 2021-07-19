@@ -12,7 +12,7 @@ class AdminController extends Controller
       if(auth()->check()){
           return redirect()->to('home');
        }
-        return view('login');
+        return redirect()->to('login');
     }
     public function logout(){
 //        Session::put('name', null);

@@ -1,7 +1,10 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Trang chu</title>
+    <title>Category</title>
+@endsection
+@section('header')
+    @include('partials.category-header')
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Add product</title>
+    <title>Product</title>
 @endsection
 
 @section('css')
@@ -11,6 +11,10 @@
     <script src="{{ asset('vendor\swalert\sweetalert2@10.js') }}"></script>
     <script src="{{ asset('admins\main.js') }}"></script>
 @endsection
+@section('header')
+    @include('partials.product-header')
+@endsection
+
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
