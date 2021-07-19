@@ -1,3 +1,4 @@
+
 @extends('layouts.admin')
 
 @section('title')
@@ -6,7 +7,6 @@
 @section('header')
     @include('partials.category-header')
 @endsection
-
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -64,4 +64,5 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
+
 
