@@ -96,11 +96,13 @@ Route::prefix('admin')->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('/', [
             'as' => 'product.index',
-            'uses' => 'AdminProductController@index'
+            'uses' => 'AdminProductController@index',
+            'middleware'=> 'can:list-product'
         ]);
         Route::get('/create', [
             'as' => 'product.create',
-            'uses' => 'AdminProductController@create'
+            'uses' => 'AdminProductController@create',
+            'middleware'=> 'can:add-product'
         ]);
         Route::get('/search', [
             'as' => 'product.search',
@@ -121,7 +123,8 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/delete/{id}', [
             'as' => 'product.delete',
-            'uses' => 'AdminProductController@delete'
+            'uses' => 'AdminProductController@delete',
+            'middleware'=> 'can:delete-product'
         ]);
     });
 

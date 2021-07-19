@@ -2,7 +2,13 @@
 return [
     'access'=> [
         'list-category'=>'list_category',
-        'list-menu'=>'list_menu',
+        'add-category'=>'add_category',
+        'edit-category'=>'edit_category',
+        'delete-category'=>'delete_category',
+        'list-product'=>'list_product',
+        'add-product'=>'add_product',
+        'edit-product'=>'edit_product',
+        'delete-product'=>'delete_product',
     ],
     'module_table'=>[
         'category',

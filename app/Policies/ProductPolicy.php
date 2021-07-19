@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Category;
+use App\Product;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CategoryPolicy
+class ProductPolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +25,12 @@ class CategoryPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Product  $product
      * @return mixed
      */
     public function view(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.list-category'));
+        return $user->checkPermissionAccess(config('permissions.access.list-product'));
     }
 
     /**
@@ -41,41 +41,45 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.add-category'));
+        return $user->checkPermissionAccess(config('permissions.access.add-product'));
     }
 
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\User  $useradd
+     * @param  \App\Product  $product
      * @return mixed
      */
-    public function update(User $user)
+    public function update(User $user,$id)
     {
-        return $user->checkPermissionAccess(config('permissions.access.edit-category'));
+        $product = Product::find($id);
+        if($user->checkPermissionAccess(config('permissions.access.edit-product')) && $user->id === $product->user_id){
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Product  $product
      * @return mixed
      */
     public function delete(User $user)
     {
-        return $user->checkPermissionAccess(config('permissions.access.delete-category'));
+        return $user->checkPermissionAccess(config('permissions.access.delete-product'));
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Product  $product
      * @return mixed
      */
-    public function restore(User $user, Category $category)
+    public function restore(User $user, Product $product)
     {
         //
     }
@@ -84,10 +88,10 @@ class CategoryPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Category  $category
+     * @param  \App\Product  $product
      * @return mixed
      */
-    public function forceDelete(User $user, Category $category)
+    public function forceDelete(User $user, Product $product)
     {
         //
     }

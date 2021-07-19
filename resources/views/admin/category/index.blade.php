@@ -16,7 +16,9 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
+              @can('add-category')
             <a href="{{route('categories.create')}}" class="btn btn-success float-right m-2">Add</a>
+              @endcan
           </div>
           <div class="col-md-12 ">
             <table class="table">
@@ -29,14 +31,18 @@
               </thead>
               <tbody>
                 @foreach ($categories as $category)
-                    
-                
+
+
                 <tr>
                   <th scope="row">{{ $category->id }}</th>
                   <td>{{ $category->name }}</td>
                   <td>
+                      @can('edit-category')
                       <a href="{{ route('categories.edit', ['id' => $category->id ]) }}" class="btn btn-default">Edit</a>
+                      @endcan
+                      @can('delete-category')
                       <a href="{{ route('categories.delete', ['id' => $category->id ]) }}" class="btn btn-danger">Delete</a>
+                          @endcan
                   </td>
                 </tr>
                 @endforeach
@@ -46,7 +52,7 @@
           <div class="col-md-12">
             {{ $categories->links() }}
           </div>
-          
+
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

@@ -23,7 +23,9 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
+              @can('add-product')
             <a href="{{ route('product.create') }}" class="btn btn-success float-right m-2">Add</a>
+              @endcan
           </div>
           <div class="col-md-12 ">
             <table class="table">
@@ -48,10 +50,14 @@
                   </td>
                   <td>{{optional($product->category)->name}}</td>
                   <td>
+{{--                      @can('edit-product', $product)--}}
                       <a href="{{route('product.edit', ['id' => $product->id])}}" class="btn btn-default">Edit</a>
+{{--                        @endcan--}}
+                          @can('delete-product')
                       <a href=""
                          data-url = "{{route('product.delete', ['id'=>$product->id])}}"
                          class="btn btn-danger action_delete">Delete</a>
+                          @endcan
                   </td>
                 </tr>
                  @endforeach
