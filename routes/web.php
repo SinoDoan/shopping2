@@ -49,11 +49,13 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/edit/{id}', [
             'as' => 'categories.edit',
-            'uses' => 'CategoryController@edit'
+            'uses' => 'CategoryController@edit',
+            'middleware'=> 'can:edit-category'
         ]);
         Route::get('/delete/{id}', [
             'as' => 'categories.delete',
-            'uses' => 'CategoryController@delete'
+            'uses' => 'CategoryController@delete',
+            'middleware'=> 'can:add-category'
         ]);
         Route::post('/update/{id}', [
             'as' => 'categories.update',
@@ -110,7 +112,8 @@ Route::prefix('admin')->group(function () {
         ]);
         Route::get('/edit/{id}', [
             'as' => 'product.edit',
-            'uses' => 'AdminProductController@edit'
+            'uses' => 'AdminProductController@edit',
+            'middleware'=> 'can:edit-product,id'
         ]);
         Route::post('/update/{id}', [
             'as' => 'product.update',
@@ -232,6 +235,16 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminRoleController@delete'
         ]);
 
+    });
+    Route::prefix('permissions')->group(function () {
+        Route::get('/create', [
+            'as' => 'permission.create',
+            'uses' => 'AdminPermissionController@create'
+        ]);
+        Route::post('/store', [
+            'as' => 'permission.store',
+            'uses' => 'AdminPermissionController@store'
+        ]);
     });
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

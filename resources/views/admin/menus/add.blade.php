@@ -20,8 +20,8 @@
                     @csrf
                     <div class="form-group">
                       <label>Ten menu</label>
-                      <input type="text" 
-                             class="form-control" 
+                      <input type="text"
+                             class="form-control"
                              name='name'
                              placeholder="Nhap ten menu">
                     </div>
@@ -29,13 +29,13 @@
                       <label>Chon menu cha</label>
                       <select class="form-control" name = 'parent_id'>
                         <option value="0">Chon menu cha</option>
-                        {!! $optionSelect !!} 
+                        {!! $optionSelect !!}
                       </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
             </div>
-          
+
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

@@ -78,7 +78,6 @@ class AdminRoleController extends Controller
         $permissionParent = $this->permission->where('parent_id', 0)->get();
         $roleEdit = $this->role->find($id);
         $permissionChecked = $roleEdit->permissions;
-
         return view('admin.role.edit', compact('roleEdit', 'permissionChecked', 'permissionParent'));
     }
 
@@ -110,4 +109,5 @@ class AdminRoleController extends Controller
     {
         return $this->DeleteModel($id, $this->role);
     }
+
 }

@@ -94,6 +94,13 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('permission.create')}}" class="nav-link">
+                        <p>
+                            Create permission table data
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Product;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Providers\Config;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,16 +26,27 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-//        dd(config('permissions.access.list-category'));
-        Gate::define('list-category', function ($user) {
-            return $user->checkPermissionAccess('list_category');
+        $this->gateDefineCategory();
 
+        Gate::define('list-product', function ($user) {
+            return $user->checkPermissionAccess('list_product');
         });
-        Gate::define('add-category', function ($user) {
-            return $user->checkPermissionAccess('add_category');
+        Gate::define('edit-product', function ($user, $id) {
+            $product = Product::find($id);
+            if($user->checkPermissionAccess('edit_product') && $user->id === $product->user_id){
+                return true;
+            }
+            return false;
         });
         Gate::define('list-menu', function ($user) {
-            return $user->checkPermissionAccess('list_menu');
+            return $user->checkPermissionAccess(config('permissions.access.list-menu'));
         });
+    }
+    public function gateDefineCategory()
+    {
+        Gate::define('list-category', 'App\Policies\CategoryPolicy@view');
+        Gate::define('add-category', 'App\Policies\CategoryPolicy@create');
+        Gate::define('edit-category', 'App\Policies\CategoryPolicy@update');
+        Gate::define('delete-category', 'App\Policies\CategoryPolicy@delete');
     }
 }
