@@ -9,6 +9,7 @@ return [
         'add-product'=>'add_product',
         'edit-product'=>'edit_product',
         'delete-product'=>'delete_product',
+        'list-menu'=>'list_menu',
     ],
     'module_table'=>[
         'category',

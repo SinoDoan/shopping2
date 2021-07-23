@@ -101,11 +101,16 @@ class AdminProductController extends Controller
                 }
             }
             //insert tags product
-            foreach ($request->tags as $tagItem) {
-                $tagInstance = $this->tag->firstOrCreate([
-                    'name' => $tagItem,
-                ]);
-                $tagIds[] = $tagInstance->id;
+            $tagIds = [];
+            if(!empty($request->tags))
+            {
+                foreach ($request->tags as $tagItem) {
+                    $tagInstance = $this->tag->firstOrCreate([
+                        'name' => $tagItem,
+                    ]);
+                    $tagIds[] = $tagInstance->id;
+                }
+
             }
             $product->tags()->attach($tagIds);
             DB::commit();
@@ -186,13 +191,18 @@ class AdminProductController extends Controller
                 }
             }
             //insert tags product
-            foreach ($request->tags as $tagItem) {
-                $tagInstance = $this->tag->firstOrCreate([
-                    'name' => $tagItem,
-                ]);
-                $tagIds[] = $tagInstance->id;
+            $tagIds = [];
+            if(!empty($request->tags))
+            {
+                foreach ($request->tags as $tagItem) {
+                    $tagInstance = $this->tag->firstOrCreate([
+                        'name' => $tagItem,
+                    ]);
+                    $tagIds[] = $tagInstance->id;
+                }
             }
             $product->tags()->sync($tagIds);
+
             DB::commit();
             return redirect()->route('product.index');
         } catch (\Exception $exception) {

@@ -13,18 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/admin', function () {
     return view('home');
 });
 //Route::get('/admin', 'AdminController@LoginAdmin');
 //Route::post('/admin', 'AdminController@PostLoginAdmin');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [
+    Route::get('/login', [
        'as' => 'admin.login',
        'uses' => 'AdminController@LoginAdmin'
     ]);
-    Route::post('/', [
+    Route::post('/login', [
         'as' => 'admin.post-login',
         'uses' => 'AdminController@PostLoginAdmin'
     ]);
